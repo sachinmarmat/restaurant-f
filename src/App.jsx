@@ -1,9 +1,7 @@
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import PublicSite from './pages/PublicSite';
 import AdminPage from './pages/AdminPage';
 import { useRestaurant } from './context/RestaurantContext';
-import { useAuth } from './context/AuthContext';
-import { useEffect } from 'react';
 
 function LoadingScreen() {
   return (
@@ -22,17 +20,10 @@ function ErrorScreen({ message, onRetry }) {
       <div className="card max-w-md text-center">
         <p className="text-red-800 font-semibold mb-2">Connection Error</p>
         <p className="text-muted mb-4">{message}</p>
-        <p className="text-sm text-muted mb-6">Make sure MongoDB is running and the server is started on port 5000.</p>
         <button onClick={onRetry} className="btn-primary">Retry</button>
       </div>
     </div>
   );
-}
-
-function PublicRoute() {
-  const { logout } = useAuth();
-  useEffect(() => { logout(); }, []);
-  return <PublicSite />;
 }
 
 export default function App() {
@@ -44,7 +35,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<PublicRoute />} />
+        <Route path="/" element={<PublicSite />} />
         <Route path="/admin" element={<AdminPage />} />
       </Routes>
     </BrowserRouter>
