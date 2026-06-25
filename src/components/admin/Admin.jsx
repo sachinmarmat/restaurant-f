@@ -29,6 +29,7 @@ export default function Admin() {
         rating: restaurant.rating,
         years: restaurant.years,
         tableCount: restaurant.tableCount,
+        photo: restaurant.photo || '',
       });
       setDishes(restaurant.dishes.map((d) => ({ ...d })));
       setChefs((restaurant.chefs || []).map((c) => ({ ...c })));
@@ -125,6 +126,11 @@ export default function Admin() {
           <div>
             <label className="form-label">Why This Restaurant Is Famous *</label>
             <textarea className="form-input" name="famousReason" rows={2} value={form.famousReason} onChange={handleChange} required />
+          </div>
+          <div>
+            <label className="form-label">Restaurant Photo URL</label>
+            <input className="form-input" name="photo" placeholder="https://..." value={form.photo} onChange={handleChange} />
+            {form.photo && <img src={form.photo} alt="preview" className="mt-2 h-40 w-full object-cover rounded-xl" />}
           </div>
         </fieldset>
 

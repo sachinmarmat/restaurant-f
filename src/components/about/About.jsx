@@ -18,12 +18,12 @@ export default function About() {
         <SectionHeader eyebrow="Our Story" title="Restaurant Details" />
         <div className="grid md:grid-cols-2 gap-10 items-center">
         <div className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-primary to-primary-dark shadow-2xl overflow-hidden relative">
-  <img 
-    src="https://elledecor.in/wp-content/uploads/2024/10/F1-1.jpg" 
-    alt="Luxury Restaurant" 
-    className="w-full h-full object-cover"
-  />
-</div>
+          {restaurant.photo ? (
+            <img src={restaurant.photo} alt={restaurant.name} className="w-full h-full object-cover" />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center text-8xl">🍽️</div>
+          )}
+        </div>
           <div>
             <h3 className="font-display text-3xl font-bold">{restaurant.name}</h3>
             <p className="text-primary font-semibold mt-1 mb-4">{restaurant.cuisine}</p>
